@@ -1,0 +1,225 @@
+
+/*import React from 'react'
+import  form from './form'
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+    <form/>
+    </div>
+  );
+}
+
+export default App;*/
+
+
+import  React from'react';
+import TextField from "@material-ui/core/TextField";
+import jsPDF from 'jspdf';
+import ReactDOMServer from 'react-dom/server';
+
+
+
+import './App.css';
+
+
+function App() {
+  
+  /* const calculations = () => {
+
+    const [values,setValues]=useState({first:"",second:"",multiply:""})
+    //const [first,setFirst]=useState('')
+    //const [second,setSecond]=useState('')
+    //const [multiply,setMultiply]=useState('')
+ 
+    //setValues(newValues)
+    calcmultiply(newValues)
+    //calcfirst(newValues)
+    //calcSecond(newValues)
+    
+    
+    } */
+    const calcmultiply = (newValues) => {
+    const first = document.querySelector('#ratePerGram').value;
+    const second = document.querySelector('#weight').value;
+
+
+alert(newValues.target.elements.ratePerGram.value);
+alert(newValues.target.elements.weight.value);
+
+    alert(first);
+    
+     // const { first,second} = newValues;
+    const newMultiply = parseInt(first)*parseInt(second);
+    document.querySelector('.total').value=parseInt(newMultiply);
+    //setMultiply(newMultiply)
+    } 
+
+    const styles = {
+      fontFamily: "sans-serif",
+      textAlign: "center"
+    };
+    const colstyle = {
+      width: "30%"
+    };
+    const tableStyle = {
+      width: "100%"
+    };
+    const divStyle = {
+      lineheight: "10px"
+    };
+   
+    const generatePDF = (event) => {
+    
+
+    
+    
+     const Prints = () => (
+
+
+      <div>
+        <h3> Billing Details:</h3>
+        <div style={divStyle}>Name:{event.target.elements.userName.value}</div>
+        <div style={divStyle}>Phone No:{event.target.elements.phoneNo.value}</div>
+        <div style={divStyle}>Email ID:{event.target.elements.emailId.value}</div>
+	<div>Address:{event.target.elements.address.value}</div>
+	<div>State:{event.target.elements.state.value}</div>
+	<div>Date:{event.target.elements.date.value}</div>
+        <table id="tab_customers" class="table table-striped" style={tableStyle}>
+          <colgroup>
+            <col span="1" style={colstyle} />
+            <col span="1" style={colstyle} />
+          </colgroup>
+          <thead>
+            <tr class="warning">
+              <th>Days</th>
+              <th>Rate Per Gram</th>
+              <th>Weight</th>
+              <th>Amount</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{event.target.elements.days.value}</td>
+              <td>{event.target.elements.ratePerGram.value}</td>
+              <td>{event.target.elements.weight.value}</td>
+              <td>{event.target.elements.total.value}</td>
+            </tr>
+          </tbody>
+        </table>
+       
+      </div>
+    );
+
+      
+      // const doc = new jsPDF();
+
+      const string = ReactDOMServer.renderToString(<Prints />);
+      const pdf = new jsPDF("p", "mm", "a4");
+
+     // renderToString(<Prints />);
+     // doc.fromHTML(ReactDOMServer.renderToString(<Prints />));
+    //  doc.save("myDocument.pdf");
+
+      pdf.fromHTML(string);
+      pdf.save("mydocument.pdf");
+    }
+    
+
+
+  return(
+  
+    <div className="form">
+    
+      <form onSubmit={generatePDF}>
+      <fieldset>
+        <h3> Billing Details:</h3>
+        <div className="formInputs">
+           <TextField id="standard-basic" label="Name" name="userName" variant="standard" />
+          </div>
+          <div className="formInputs">
+          <TextField id="standard-basic" label="Phone No." name="phoneNo" variant="standard" />
+         </div>
+         <div className="formInputs">
+         <TextField id="standard-basic" label="Email Id" name="emailId" variant="standard" />
+         </div>
+         <div className="formInputs">             
+         <TextField id="standard-basic" label="Id Proof No" name="idProof" variant="standard" />
+         </div>
+         <div className="formInputs">
+         <TextField id="standard-basic" label="Address" name="address" variant="standard" />
+         </div>
+         <div className="formInputs">
+         <TextField id="standard-basic" label="State" name="state" variant="standard" />
+         </div>
+         
+          <div className="formInputs">
+         
+          <TextField id="standard-basic" label="Date" name="date" variant="standard" />
+        
+          </div>
+
+          <div className="formInputs">
+         
+         
+          <TextField id="standard-basic" label="Days" name="days" variant="standard" />
+          
+          </div>
+
+          
+          <div className="formInputs">
+          <TextField id="standard-basic ratePerGram" label="Rate Per Gram" variant="standard"  onChange={(e)=> calcmultiply(e.target.value)} placeholder="Rate per gram" name="ratePerGram"  className='ratePerGram'/>
+        
+         </div>
+         
+         <div className="formInputs">
+         <TextField id="standard-basic" label="Weight" variant="standard"  name="weight"  onChange={(e)=> calcmultiply(e.target.value)} placeholder="weight" className='weight'/>
+           {/* <input type ="text" onChange={(e)=> setOperation(e.target.value)} placeholder="operation"/> */}
+        
+        
+
+         
+         </div>
+
+        
+
+
+
+
+         
+         
+         <div className="formInputs">
+        
+         <TextField id="standard-basic" label="Amount" variant="standard" name="total"  className="total"/>
+         
+         </div>
+
+
+       </fieldset>
+
+       
+
+
+       <button variant="contained" >Submit</button>
+      
+       
+      </form>
+    </div>
+  )
+  }
+  
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
