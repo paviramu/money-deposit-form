@@ -217,6 +217,7 @@ function App({ a }) {
 
   const tableStyle = {
     width: "10%",
+    height: "5px !important",
   };
 
   const tdStyle = {
@@ -227,81 +228,87 @@ function App({ a }) {
   const generatePDF = (event) => {
     const Prints = () => (
       <div>
-        <table id="tab_customers" className="table-striped" style={tableStyle}>
-          <tr className="warning">
-            <th>Denomination</th>
-            <th>Count</th>
-            <th>Amount</th>
-          </tr>
-          <tr>
-            <td className="text-left">2000</td>
-            <td style={tdStyle}>123{event.target.elements.x2000.value}</td>
-            <td style={tdStyle}>{event.target.elements.total2000.value}</td>
-          </tr>
-          <tr>
-            <td>500</td>
-            <td>{event.target.elements.x500.value}</td>
-            <td>{event.target.elements.total500.value}</td>
-          </tr>
-          <tr>
-            <td>200</td>
-            <td>{event.target.elements.x200.value}</td>
-            <td>{event.target.elements.total200.value}</td>
-          </tr>
-          <tr>
-            <td>100</td>
-            <td>{event.target.elements.x100.value}</td>
-            <td>{event.target.elements.total100.value}</td>
-          </tr>
-          <tr>
-            <td>50</td>
-            <td>{event.target.elements.x50.value}</td>
-            <td>{event.target.elements.total50.value}</td>
-          </tr>
-          <tr>
-            <td>20</td>
-            <td>{event.target.elements.x20.value}</td>
-            <td>{event.target.elements.total20.value}</td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td>{event.target.elements.x10.value}</td>
-            <td>{event.target.elements.total10.value}</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>{event.target.elements.x5.value}</td>
-            <td>{event.target.elements.total5.value}</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>{event.target.elements.x2.value}</td>
-            <td>{event.target.elements.total2.value}</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>{event.target.elements.x1.value}</td>
-            <td>{event.target.elements.total1.value}</td>
-          </tr>
+        <div align="center">
+          <table style={tableStyle}>
+            <tr>
+              <th>Denomination</th>
+              <th>Count</th>
+              <th>Amount</th>
+            </tr>
+            <tr>
+              <td className="text-left">2000</td>
+              <td style={tdStyle}>{event.target.elements.x2000.value}</td>
+              <td style={tdStyle}>{event.target.elements.total2000.value}</td>
+            </tr>
+            <tr>
+              <td style={{ height: "10px!important" }}>500</td>
+              <td style={{ height: "10px!important" }}>
+                {event.target.elements.x500.value}
+              </td>
+              <td style={{ height: "10px!important" }}>
+                {event.target.elements.total500.value}
+              </td>
+            </tr>
+            <tr>
+              <td>200</td>
+              <td>{event.target.elements.x200.value}</td>
+              <td>{event.target.elements.total200.value}</td>
+            </tr>
+            <tr>
+              <td>100</td>
+              <td>{event.target.elements.x100.value}</td>
+              <td>{event.target.elements.total100.value}</td>
+            </tr>
+            <tr>
+              <td>50</td>
+              <td>{event.target.elements.x50.value}</td>
+              <td>{event.target.elements.total50.value}</td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>{event.target.elements.x20.value}</td>
+              <td>{event.target.elements.total20.value}</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>{event.target.elements.x10.value}</td>
+              <td>{event.target.elements.total10.value}</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>{event.target.elements.x5.value}</td>
+              <td>{event.target.elements.total5.value}</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>{event.target.elements.x2.value}</td>
+              <td>{event.target.elements.total2.value}</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>{event.target.elements.x1.value}</td>
+              <td>{event.target.elements.total1.value}</td>
+            </tr>
 
-          <tr>
-            <td>Total</td>
-            <td className="text-left">
-              <td>{event.target.elements.grandTotal.value}</td>
-            </td>
-          </tr>
-        </table>
+            <tr>
+              <td>Total</td>
+              <td className="text-left">
+                <td>{event.target.elements.grandTotal.value}</td>
+              </td>
+            </tr>
+          </table>
+        </div>
 
         <div className="sign">
-          <span align="Left">Signature</span>&nbsp;
+          <span align="left">Signature</span>&nbsp;
           <span className="emptySpan">&nbsp;&nbsp;&nbsp;</span>
-          <span align="Right">Incharge Signature</span>
+          <span align="right">Incharge Signature</span>
         </div>
       </div>
     );
 
     const string = ReactDOMServer.renderToString(<Prints />);
-    const pdf = new jsPDF("p", "mm", "a4");
+    const pdf = new jsPDF("p", "mm", "a3");
 
     pdf.fromHTML(string);
     pdf.save("mydocument.pdf");
