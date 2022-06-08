@@ -237,9 +237,7 @@ function App({ a }) {
             </tr>
             <tr>
               <td className="text-left">2000</td>
-              <td style={{ height: "10px!important" }}>
-                123{event.target.elements.x2000.value}
-              </td>
+              <td style={tdStyle}>{event.target.elements.x2000.value}</td>
               <td style={tdStyle}>{event.target.elements.total2000.value}</td>
             </tr>
             <tr>
@@ -302,9 +300,9 @@ function App({ a }) {
         </div>
 
         <div className="sign">
-          <span align="Left">Signature</span>&nbsp;
+          <span align="left">Signature</span>&nbsp;
           <span className="emptySpan">&nbsp;&nbsp;&nbsp;</span>
-          <span align="Right">Incharge Signature</span>
+          <span align="right">Incharge Signature</span>
         </div>
       </div>
     );
